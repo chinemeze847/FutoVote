@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.futovote.R
 import com.example.futovote.model.Candidate
 
 class CandidateAdapter( private val candidates : List<Candidate>? )
@@ -13,24 +14,24 @@ class CandidateAdapter( private val candidates : List<Candidate>? )
     class CandidateViewHolder(private val view : View) : RecyclerView.ViewHolder(view)
     {
 
-        fun bind(student: Candidate)
+        fun bind(candidate: Candidate)
         {
             val textView : TextView = view.findViewById(R.id.candidate_title)
-            textView.text = student.firstname
+            textView.text = candidate.firstname
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CandidateViewHolder {
         val adapterLayout = LayoutInflater.from(parent.context)
-            .inflate(R.layout.activity_candidate, parent, false)
+            .inflate(R.layout.fragment_candidate_list, parent, false)
         return CandidateViewHolder(adapterLayout)
     }
 
     override fun onBindViewHolder(holder: CandidateViewHolder, position: Int)
     {
-        val student = candidates?.get(position)
-        if (student != null) {
-            holder.bind(student)
+        val candidate = candidates?.get(position)
+        if (candidate != null) {
+            holder.bind(candidate)
         }
     }
 
