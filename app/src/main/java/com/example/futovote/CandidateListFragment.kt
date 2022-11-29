@@ -15,7 +15,7 @@ class CandidateListFragment : Fragment() {
     private val binding get() = _binding!!
 
     // Use the 'by activityViewModels()' Kotlin property delegate from the fragment-ktx artifact
-    private val viewModel: CandidateViewModel by activityViewModels()
+    private val candidateViewModel: CandidateViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -27,7 +27,15 @@ class CandidateListFragment : Fragment() {
         return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?)
+    {
+        binding?.apply {
+            // Specify the fragment as the lifecycle owner
+            lifecycleOwner = viewLifecycleOwner
+
+            // Assign the view model to a property in the binding class
+            viewModel = candidateViewModel
+
+        }
     }
 }

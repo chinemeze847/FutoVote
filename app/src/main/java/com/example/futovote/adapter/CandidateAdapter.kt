@@ -16,7 +16,7 @@ class CandidateAdapter( private val candidates : List<Candidate>? )
 
         fun bind(candidate: Candidate)
         {
-            val textView : TextView = view.findViewById(R.id.candidate_title)
+            val textView : TextView = view.findViewById(R.id.first_name)
             textView.text = candidate.firstname
         }
     }

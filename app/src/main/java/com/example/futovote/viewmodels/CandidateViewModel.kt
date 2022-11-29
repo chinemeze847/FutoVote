@@ -12,29 +12,18 @@ import kotlinx.coroutines.launch
 
 class CandidateViewModel : ViewModel() {
 
-    private val _students = MutableLiveData<List<Candidate>>()
+    private val _candidates = MutableLiveData<List<Candidate>>()
 
-    val students : LiveData<List<Candidate>> get()  = _students
+    val candidates : LiveData<List<Candidate>> get()  = _candidates
 
-    /**
-     * Call getStudents() on init so we can display status immediately.
-     */
-    init {
-        Log.d("Candidate", "CandidateViewModel created!")
-        getStudents()
-    }
 
-    /**
-     * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [Students] [List] [LiveData].
-     */
-    private fun getStudents() {
+    fun getCandidates() {
 
         viewModelScope.launch {
             try {
-                _students.value = CandidateApi.retrofitService.getStudents()
+                _candidates.value = CandidateApi.retrofitService.getCandidates()
             } catch (e: Exception) {
-                _students.value = listOf()
+                _candidates.value = listOf()
                 e.message
             }
         }
